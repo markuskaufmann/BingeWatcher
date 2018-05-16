@@ -41,6 +41,13 @@ $colors: (
   dark:       #222
 );
 
+$tabs-md-tab-icon-color: #000;
+$tabs-md-tab-icon-color-active: #fff;
+$tabs-wp-tab-icon-color: #000;
+$tabs-wp-tab-icon-color-active: #fff;
+$tabs-ios-tab-icon-color: #000;
+$tabs-ios-tab-icon-color-active: #fff;
+
 
 // App iOS Variables
 // --------------------------------------------------
@@ -72,6 +79,9 @@ $colors: (
 
 @import "ionic.theme.default";
 
+$text-input-md-highlight-color: black;
+$text-input-ios-highlight-color: black;
+$text-input-wp-highlight-color: black;
 
 // Ionicons
 // --------------------------------------------------
