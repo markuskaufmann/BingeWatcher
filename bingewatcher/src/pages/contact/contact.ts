@@ -7,8 +7,10 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController) {
+  favorites = [];
 
+  constructor(public navCtrl: NavController) {
+    this.favorites.push("Blacklist", "Banshee", "Westworld", "Game of Thrones", "Blindspot")
   }
 
 }

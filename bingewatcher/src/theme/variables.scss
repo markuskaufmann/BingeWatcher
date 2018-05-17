@@ -79,9 +79,15 @@ $tabs-ios-tab-icon-color-active: #fff;
 
 @import "ionic.theme.default";
 
-$text-input-md-highlight-color: black;
-$text-input-ios-highlight-color: black;
-$text-input-wp-highlight-color: black;
+$text-input-md-highlight-color: transparent;
+$text-input-ios-highlight-color: transparent;
+$text-input-wp-highlight-color: transparent;
+$text-input-placeholder-color: lightgrey;
+
+$toolbar-background: white;
+$toolbar-md-background: white;
+$toolbar-ios-background: white;
+$toolbar-wp-background: white;
 
 // Ionicons
 // --------------------------------------------------
