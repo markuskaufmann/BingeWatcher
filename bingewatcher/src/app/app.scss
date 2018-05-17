@@ -20,9 +20,9 @@
 }
 
 .tabs .tabbar {
-  background-color: lightgrey;
+  background-color: map_get($colors, primary);
 }
 
 .tabs .tab-button[aria-selected=true] {
-  background-color: darkgrey;
+  background-color: mediumblue;
 }
