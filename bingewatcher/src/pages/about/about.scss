@@ -1,3 +1,30 @@
 page-about {
 
 }
+
+.dateSlides {
+  height: auto;
+}
+
+.dateHeader.header.header-md::after {
+  background-image: none;
+}
+
+.dateBar {
+  padding: 20px 15px;
+}
+
+#date .item-inner {
+  border: none;
+}
+
+#date {
+  color: map_get($colors, primary);
+  border: 1px solid map_get($colors, primary);
+  border-radius: 30px;
+  height: 50px;
+}
+
+#date .label {
+  text-align: center;
+}

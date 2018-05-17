@@ -1,4 +1,22 @@
-
+<ion-header class="dateHeader">
+  <ion-toolbar class="dateBar">
+    <ion-item id="date">
+      <button ion-button clear icon-only item-left>
+        <ion-icon name="md-arrow-round-back"></ion-icon>
+      </button>
+      <ion-label>{{ getCurrentDate() }}</ion-label>
+      <button ion-button clear icon-only item-right>
+        <ion-icon name="md-arrow-round-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
 <ion-content padding class="content">
-  <h2>Here's the general timeline of all series</h2>
+  <ion-slides class="dateSlides" effect="slide" direction="horizontal" (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <ion-list *ngFor="let sample of sampleData">
+        <ion-item>{{ sample }}</ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
