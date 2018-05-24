@@ -1,7 +1,23 @@
-
 <ion-content padding class="content">
-  <h2>Here are your favorites placed</h2>
+  <ion-label>Heute</ion-label>
   <ion-list>
-    list
+    <button ion-item *ngFor="let serie of seriesToday" (click)="serieSelected(serie)">
+      <ion-icon name="film"></ion-icon>
+      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
+    </button>
+  </ion-list>
+  <ion-label>Morgen</ion-label>
+  <ion-list>
+    <button ion-item *ngFor="let serie of seriesTomorrow" (click)="serieSelected(serie)">
+      <ion-icon name="film"></ion-icon>
+      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
+    </button>
+  </ion-list>
+  <ion-label>Übermorgen</ion-label>
+  <ion-list>
+    <button ion-item *ngFor="let serie of seriesDayAfterTomorrow" (click)="serieSelected(serie)">
+      <ion-icon name="film"></ion-icon>
+      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
+    </button>
   </ion-list>
 </ion-content>
