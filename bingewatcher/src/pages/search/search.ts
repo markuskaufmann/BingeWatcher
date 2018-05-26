@@ -1,24 +1,28 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {Serie} from "../../interfaces/Serie";
 import {HttpClient} from "@angular/common/http";
+import {SearchResults} from "../../interfaces/SearchResults";
+import {Serie} from "../../interfaces/Serie";
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-search',
+  templateUrl: 'search.html'
 })
-export class ContactPage {
+export class SearchPage {
 
-  favorites: Array<Serie>;
+  private static readonly API_URL = "https://api.themoviedb.org/3/search/tv?api_key=a3098e7a0c2ad40520eab2ff867b1f76&language=de&query=";
+  private static readonly IMAGE_URL = "http://image.tmdb.org/t/p/w185/";
+
+  searchQuery: string;
+  results: Array<Serie>;
 
   constructor(public navCtrl: NavController, public httpClient: HttpClient) {
-    this.getFavorites();
   }
 
-  getFavorites() {
-    // let storedFavorites = this.favService.storedFavorites;
-    /*for(let storedFavorite of storedFavorites.favs) {
-      /!*let results = this.httpClient.get(SearchPage.API_URL + query);
+  execSearch() {
+    if(this.searchQuery && this.searchQuery.trim().length > 0) {
+      let query = this.searchQuery.trim();
+      let results = this.httpClient.get(SearchPage.API_URL + query);
       results.subscribe(data => {
         console.log(data);
         let searchResults: SearchResults = <SearchResults> data;
@@ -30,7 +34,7 @@ export class ContactPage {
             serie.poster_path = "./assets/imgs/no_poster.png"
           }
         }
-      });*!/
-    }*/
+      });
+    }
   }
 }

@@ -1,23 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-item id="search">
-      <ion-input placeholder="Suche nach Serie..."></ion-input>
+<ion-content padding class="content">
+  <div id="userInfo">
+    <img src="./assets/imgs/profile.png" width="180px" height="180px">
+    <ion-item>
+      <ion-input placeholder="Wie heisst du?..."></ion-input>
       <button ion-button clear icon-only item-right>
-        <ion-icon name="md-search"></ion-icon>
+        <ion-icon name="md-checkmark"></ion-icon>
       </button>
     </ion-item>
-  </ion-toolbar>
-  <ion-item-divider class="divider"></ion-item-divider>
-  <ion-toolbar>
-    <ion-item id="list-header">
-      <ion-label class="name">Name</ion-label>
-      <ion-label class="push" item-right>Push</ion-label>
+    <ion-item-divider class="divider"></ion-item-divider>
+  </div>
+  <div id="titleFavorites">
+    <ion-title>Meine Favoriten</ion-title>
+    <ion-item>
+      <label id="favName">Serie</label>
+      <label id="favPush">Push</label>
     </ion-item>
-  </ion-toolbar>
-</ion-header>
-<ion-content padding class="content">
+  </div>
   <ion-list *ngFor="let favorite of favorites">
-    <ion-item class="list-item">
+    <ion-item class="favorite-item">
       <ion-label>{{ favorite }}</ion-label>
       <ion-toggle class="togglePush" item-right></ion-toggle>
     </ion-item>
