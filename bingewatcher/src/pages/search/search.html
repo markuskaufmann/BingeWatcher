@@ -10,38 +10,38 @@
   <ion-item-divider class="divider"></ion-item-divider>
 </ion-header>
 <ion-content padding class="content">
-  <ion-list *ngFor="let result of results">
-    <ion-item-sliding #item>
-      <ion-item class="list-item">
-        <img src="{{ result.poster_path }}" alt="no picture"/>
-        <div class="resContent">
-          <ion-title class="resName">{{ result.name }}</ion-title>
-          <table class="resTable">
-            <tr>
-              <td class="resLabel">Erscheinungsjahr:</td>
-              <td class="resValue">{{ result.first_air_date.substring(0, 4).trim() }}</td>
-            </tr>
-            <tr>
-              <td class="resLabel">Originalsprache:</td>
-              <td class="resValue">{{ result.original_language.trim() }}</td>
-            </tr>
-            <tr>
-              <td class="resLabel">Handlung:</td>
-              <td class="resValue">
-                <label>{{ result.overview.trim().substr(0, 150) + "..." }}</label>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </ion-item>
-      <ion-item-options side="right">
-        <button id="btnFavorite" ion-button>
-          <ion-icon name="md-star"></ion-icon>
-        </button>
-        <button id="btnDetail" ion-button>
-          <ion-icon name="md-information-circle"></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-list>
+  <ion-item-sliding *ngFor="let result of results">
+    <ion-item class="list-item">
+      <img src="{{ result.poster_path }}" alt="no picture"/>
+      <div class="resContent">
+        <ion-title class="resName">{{ result.name }}</ion-title>
+        <table class="resTable">
+          <tr>
+            <td class="resLabel">Jahr:</td>
+            <td class="resValue">{{ result.first_air_date.substring(0, 4).trim() }}</td>
+          </tr>
+          <tr>
+            <td class="resLabel">Sprache:</td>
+            <td class="resValue">{{ result.original_language.trim() }}</td>
+          </tr>
+          <tr>
+            <td class="resLabel">Land:</td>
+            <td class="resValue">
+              <label>{{ result.origin_country }}</label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ion-item>
+    <ion-item-options side="right">
+      <button id="btnFavorite" ion-button (click)="addToFavorites(result)">
+        <ion-icon name="md-star"></ion-icon>
+      </button>
+      <button id="btnDetail" ion-button (click)="showDetail(result)">
+        <ion-icon name="md-information-circle"></ion-icon>
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 </ion-content>

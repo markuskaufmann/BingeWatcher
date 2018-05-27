@@ -1,0 +1,97 @@
+<ion-header class="bwHeader">
+  <ion-navbar class="detNav">
+    <ion-title class="detNavTitle">Detail</ion-title>
+    <ion-buttons end>
+      <button id="btnDetFavorite" ion-button icon-only (click)="addToFavorites()">
+        <ion-icon name="md-star"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="content">
+  <ion-item id="detImg">
+    <img src="{{ serieDetail.poster_path }}" alt="no picture" />
+  </ion-item>
+  <ion-title id="detName">{{ serieDetail.name }}</ion-title>
+  <div class="detOverview">{{ serieDetail.overview }}</div>
+  <ion-title id="detFF">Facts & Figures</ion-title>
+  <div id="detFactContainer">
+    <table class="detFacts">
+      <tr>
+        <td class="detLabel">Regisseur: </td>
+        <td class="detValue">{{ getRegisseur() }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Genre: </td>
+        <td class="detValue">{{ getGenre() }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Land: </td>
+        <td class="detValue">{{ serieDetail.origin_country }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Sprache: </td>
+        <td class="detValue">{{ serieDetail.languages.join(", ") }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Erstausstrahlung: </td>
+        <td class="detValue">{{ transformDate(serieDetail.first_air_date) }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Letzte Folge: </td>
+        <td class="detValue">{{ transformDate(serieDetail.last_air_date) }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Anzahl Staffeln: </td>
+        <td class="detValue">{{ serieDetail.number_of_seasons }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Anzahl Episoden: </td>
+        <td class="detValue">{{ serieDetail.number_of_episodes }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">In Produktion: </td>
+        <td class="detValue">{{ serieDetail.in_production ? "Ja" : "Nein" }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Status: </td>
+        <td class="detValue">{{ serieDetail.status }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Serientyp: </td>
+        <td class="detValue">{{ serieDetail.type }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Sendenetzwerk: </td>
+        <td class="detValue">{{ getNetwork() }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Homepage: </td>
+        <td class="detValue"><a href="{{ serieDetail.homepage }}">{{ serieDetail.homepage }}</a></td>
+      </tr>
+    </table>
+  </div>
+  <ion-title id="detSeasonOverview">Staffelübersicht</ion-title>
+  <ion-item *ngFor="let season of serieDetail.seasons">
+    <div class="detSeasonImg">
+      <img src="{{ getSeasonPosterPath(season.poster_path) }}">
+    </div>
+    <label class="detSeasonName">{{ season.name }}</label>
+    <div class="detSeasonFactContainer">
+      <table class="detFacts">
+        <tr>
+          <td class="detLabel">Staffelnummer: </td>
+          <td class="detValue">{{ season.season_number }}</td>
+        </tr>
+        <tr>
+          <td class="detLabel">Ausstrahlung: </td>
+          <td class="detValue">{{ transformDate(season.air_date) }}</td>
+        </tr>
+        <tr>
+          <td class="detLabel">Anzahl Episoden: </td>
+          <td class="detValue">{{ season.episode_count }}</td>
+        </tr>
+      </table>
+    </div>
+  </ion-item>
+</ion-content>

@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { File } from "@ionic-native/file";
 import {SearchPage} from "../pages/search/search";
 import {FavoriteService} from "../services/favorite/favorite";
+import {DetailPage} from "../pages/detail/detail";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {FavoriteService} from "../services/favorite/favorite";
     AboutPage,
     SearchPage,
     ContactPage,
+    DetailPage,
     HomePage,
     TabsPage
   ],
@@ -35,6 +37,7 @@ import {FavoriteService} from "../services/favorite/favorite";
     AboutPage,
     SearchPage,
     ContactPage,
+    DetailPage,
     HomePage,
     TabsPage
   ],

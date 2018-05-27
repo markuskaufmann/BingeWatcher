@@ -1,9 +1,16 @@
 <ion-content padding class="content">
+  <ion-refresher (ionRefresh)="reloadData($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Aktualisieren"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <div id="userInfo">
     <img src="./assets/imgs/profile.png" width="180px" height="180px">
     <ion-item>
-      <ion-input placeholder="Wie heisst du?..."></ion-input>
-      <button ion-button clear icon-only item-right>
+      <ion-input [(ngModel)]="username" placeholder="Wie heisst du?..."></ion-input>
+      <button ion-button clear icon-only item-right (click)="saveUsername()">
         <ion-icon name="md-checkmark"></ion-icon>
       </button>
     </ion-item>
@@ -16,10 +23,26 @@
       <label id="favPush">Push</label>
     </ion-item>
   </div>
-  <ion-list *ngFor="let favorite of favorites">
-    <ion-item class="favorite-item">
-      <ion-label>{{ favorite }}</ion-label>
-      <ion-toggle class="togglePush" item-right></ion-toggle>
-    </ion-item>
+  <ion-list>
+    <ion-item-sliding *ngFor="let serie of favorites" #item>
+      <ion-item class="favlist-item">
+        <img src="{{ serie.poster_path }}" alt="no picture" />
+        <div class="favContent">
+          <ion-title class="resName">{{ serie.name }}</ion-title>
+          <label>({{ serie.first_air_date.substring(0, 4).trim() }})</label>
+        </div>
+      </ion-item>
+      <ion-item class="favlist-item-toggle">
+        <ion-toggle class="favToggle" [(ngModel)]="serie.push"></ion-toggle>
+      </ion-item>
+      <ion-item-options side="left">
+        <button id="btnDelete" ion-button (click)="removeFavorite(serie, item)">
+          <ion-icon name="md-close"></ion-icon>
+        </button>
+        <button id="btnDetail" ion-button (click)="showDetails(serie)">
+          <ion-icon name="md-information-circle"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
