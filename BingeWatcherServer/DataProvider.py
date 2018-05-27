@@ -19,6 +19,10 @@ class Server(http.server.BaseHTTPRequestHandler):
             with open('data/' + date) as file:
                 self.wfile.write(file.read().encode())
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        http.server.BaseHTTPRequestHandler.end_headers(self)
+
 
 def startWebServer():
     Handler = Server

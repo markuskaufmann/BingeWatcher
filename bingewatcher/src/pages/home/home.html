@@ -1,23 +1,12 @@
 <ion-content padding class="content">
   <ion-label>Heute</ion-label>
   <ion-list>
-    <button ion-item *ngFor="let serie of seriesToday" (click)="serieSelected(serie)">
-      <ion-icon name="film"></ion-icon>
-      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
-    </button>
-  </ion-list>
-  <ion-label>Morgen</ion-label>
-  <ion-list>
-    <button ion-item *ngFor="let serie of seriesTomorrow" (click)="serieSelected(serie)">
-      <ion-icon name="film"></ion-icon>
-      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
-    </button>
-  </ion-list>
-  <ion-label>Übermorgen</ion-label>
-  <ion-list>
-    <button ion-item *ngFor="let serie of seriesDayAfterTomorrow" (click)="serieSelected(serie)">
-      <ion-icon name="film"></ion-icon>
-      {{serie.name}} Staffel: {{serie.season}} Episode: {{serie.episode}}
-    </button>
+    <ion-item class="list-item" ion-item *ngFor="let episode of seriesToday" (click)="serieSelected(serie)">
+      <img src="{{ episode.still_path }}" alt="no picture"/>
+      <div class="favContent">
+        <ion-title class="resName">{{episode.series_name}}: {{ episode.name }}</ion-title>
+        <label>Episode: {{ episode.episode_number }} Season: {{ episode.season_number}}</label>
+      </div>
+    </ion-item>
   </ion-list>
 </ion-content>
