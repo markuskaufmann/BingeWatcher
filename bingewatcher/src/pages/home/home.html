@@ -1,12 +1,17 @@
 <ion-content padding class="content">
-  <ion-label>Heute</ion-label>
-  <ion-list>
-    <ion-item class="list-item" ion-item *ngFor="let episode of seriesToday" (click)="serieSelected(serie)">
-      <img src="{{ episode.still_path }}" alt="no picture"/>
-      <div class="favContent">
-        <ion-title class="resName">{{episode.series_name}}: {{ episode.name }}</ion-title>
-        <label>Episode: {{ episode.episode_number }} Season: {{ episode.season_number}}</label>
-      </div>
-    </ion-item>
-  </ion-list>
+  <ion-slides class="dateSlides" effect="slide" direction="horizontal" initialSlide="1" (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <ion-title class="dateTitle">Heute</ion-title>
+      <ion-list *ngFor="let episode of seriesToday; let i = index">
+        <ion-item class="list-item" (click)="serieSelected(episode)">
+          <img src="{{ episode.still_path }}" alt="no picture" />
+          <div class="favContent">
+            <ion-title class="resName">{{episode.series_name}}: {{ episode.name }}</ion-title>
+            <label>Season: {{ episode.season_number}}</label>
+            <label>Episode: {{ episode.episode_number }} </label>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

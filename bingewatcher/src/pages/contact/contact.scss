@@ -81,7 +81,6 @@ page-contact {
 }
 
 .favlist-item {
-  border-bottom: 1px solid whitesmoke;
   display: inline;
   padding: 0;
   float: left;
@@ -97,7 +96,11 @@ page-contact {
   height: 150px;
   padding: 10px 0 10px 10px;
   margin: 0;
-  border-bottom: none;
+  border: none;
+}
+
+.favlist-item.item-wrapper:last-child.item-inner {
+  border-bottom: 1px solid whitesmoke;
 }
 
 .favlist-item img {
@@ -115,10 +118,11 @@ page-contact {
   padding-right: 10px;
   padding-top: 50px;
   padding-left: 0;
+  border-bottom: 1px solid whitesmoke;
 }
 
-.favlist-item-toggle div.item-inner {
-  border-bottom: none;
+.favlist-item-toggle.list-md.item-block.item-inner {
+  border-bottom: transparent;
 }
 
 #btnDelete {
