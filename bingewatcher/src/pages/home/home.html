@@ -1,14 +1,62 @@
-<ion-header class="dateHeader">
+<!--<ion-header class="dateHeader">
   <ion-toolbar class="dateBar">
     <ion-item id="date">
       <ion-label>{{ getCurrentDate() }}</ion-label>
     </ion-item>
   </ion-toolbar>
-</ion-header>
+</ion-header>-->
 <ion-content padding class="content">
-  <ion-slides class="dateSlides" effect="slide" direction="horizontal" initialSlide="1" (ionSlideDidChange)="slideChanged()">
-    <ion-slide>
-      <ion-list *ngFor="let episode of data">
+  <ion-slides class="dateHomeSlides" effect="slide" direction="horizontal" initialSlide="1" [pager]="true">
+    <ion-slide class="homeSlide">
+      <ion-item class="homedate">
+        <ion-label>{{ yesterday.toLocaleDateString("de-CH") }}</ion-label>
+      </ion-item>
+      <ion-list *ngFor="let episode of data.get(0)">
+        <ion-item class="list-item" (click)="showDetail(episode)">
+          <img src="{{ episode.still_path }}" alt="no picture" />
+          <div class="favContent">
+            <ion-title class="resName">{{episode.series_name}}</ion-title>
+            <label class="epName">{{ episode.name }}</label>
+            <label>S{{ episode.season_number}} / E{{ episode.episode_number }}</label>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+    <ion-slide class="homeSlide">
+      <ion-item class="homedate">
+        <ion-label>{{ today.toLocaleDateString("de-CH") }}</ion-label>
+      </ion-item>
+      <ion-list *ngFor="let episode of data.get(1)">
+        <ion-item class="list-item" (click)="showDetail(episode)">
+          <img src="{{ episode.still_path }}" alt="no picture" />
+          <div class="favContent">
+            <ion-title class="resName">{{episode.series_name}}</ion-title>
+            <label class="epName">{{ episode.name }}</label>
+            <label>S{{ episode.season_number}} / E{{ episode.episode_number }}</label>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+    <ion-slide class="homeSlide">
+      <ion-item class="homedate">
+        <ion-label>{{ tomorrow.toLocaleDateString("de-CH") }}</ion-label>
+      </ion-item>
+      <ion-list *ngFor="let episode of data.get(2)">
+        <ion-item class="list-item" (click)="showDetail(episode)">
+          <img src="{{ episode.still_path }}" alt="no picture" />
+          <div class="favContent">
+            <ion-title class="resName">{{episode.series_name}}</ion-title>
+            <label class="epName">{{ episode.name }}</label>
+            <label>S{{ episode.season_number}} / E{{ episode.episode_number }}</label>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+    <ion-slide class="homeSlide">
+      <ion-item class="homedate">
+        <ion-label>{{ tomorrowpp.toLocaleDateString("de-CH") }}</ion-label>
+      </ion-item>
+      <ion-list *ngFor="let episode of data.get(3)">
         <ion-item class="list-item" (click)="showDetail(episode)">
           <img src="{{ episode.still_path }}" alt="no picture" />
           <div class="favContent">

@@ -10,3 +10,29 @@ page-home {
   font-style: italic;
   font-weight: 500;
 }
+
+.dateHomeSlides {
+  height: 100%;
+}
+
+.homeSlide {
+  display: block;
+  overflow-y: scroll;
+}
+
+.homedate .item-inner {
+  border: none;
+}
+
+.homedate {
+  color: map_get($colors, primary);
+  border: 1px solid map_get($colors, primary);
+  border-radius: 30px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.homedate .label {
+  text-align: center;
+}

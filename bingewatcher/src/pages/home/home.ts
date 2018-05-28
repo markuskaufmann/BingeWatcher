@@ -23,15 +23,14 @@ export class HomePage {
   private tomorrowpp: Date = new Date();
 
   dateMap = new Map<number, Date>();
-  currentIndex = 1;
-  data: Array<Episode> = [];
+  data = new Map<number, Array<Episode>>();
 
   constructor(public navCtrl: NavController, public httpClient: HttpClient, public favService: FavoriteService) {
     this.initialize();
   }
 
   ionViewWillEnter() {
-    this.getTodayEpisodes(this.dateMap.get(this.currentIndex));
+    this.retrieveEpisodes();
   }
 
   private initialize() {
@@ -42,25 +41,21 @@ export class HomePage {
     this.dateMap.set(1, this.today);
     this.dateMap.set(2, this.tomorrow);
     this.dateMap.set(3, this.tomorrowpp);
-    this.getTodayEpisodes(this.today);
+    this.retrieveEpisodes();
   }
 
-  getCurrentDate(): string {
-    return this.dateMap.get(this.currentIndex).toLocaleDateString("de-CH");
-  }
-
-  slideChanged() {
-    console.log("slide change");
-    this.currentIndex = this.slides.getActiveIndex();
-    this.getTodayEpisodes(this.dateMap.get(this.currentIndex));
+  retrieveEpisodes() {
+    this.getEpisodes(this.dateMap.get(0), 0);
+    this.getEpisodes(this.dateMap.get(1), 1);
+    this.getEpisodes(this.dateMap.get(2), 2);
+    this.getEpisodes(this.dateMap.get(3), 3);
   }
 
   showDetail(episode: Episode) {
     this.navCtrl.push(EpisodeDetailPage, { "episode": episode });
   }
 
-  private getTodayEpisodes(date: Date) {
-    this.data = [];
+  private getEpisodes(date: Date, index: number) {
     let favorites = this.favService.storedData.favs;
     let date_string = date.getDate().toString() + '_' + ("0" + (date.getMonth() + 1).toString()).slice(-2) + '_' + date.getFullYear().toString();
     let seriesJsonToday = this.httpClient.get('http://127.0.0.1:8000/?date=' + date_string);
@@ -77,6 +72,7 @@ export class HomePage {
           }
         }
       }
+      let episodesToDisplay = [];
       for (let serie of seriesFavorite) {
         let url = HomePage.API_URL;
         url = url.replace('tv_placeholder', serie.serie_id.toString());
@@ -92,7 +88,11 @@ export class HomePage {
           } else {
             episode.still_path = "./assets/imgs/no_poster.png"
           }
-          this.data.push(episode)
+          episodesToDisplay.push(episode);
+        }, (error) => {
+          console.log(error);
+        }, () => {
+          this.data.set(index, episodesToDisplay);
         });
       }
     });

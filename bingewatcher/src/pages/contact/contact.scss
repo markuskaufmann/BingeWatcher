@@ -96,11 +96,7 @@ page-contact {
   height: 150px;
   padding: 10px 0 10px 10px;
   margin: 0;
-  border: none;
-}
-
-.favlist-item.item-wrapper:last-child.item-inner {
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke !important;
 }
 
 .favlist-item img {
@@ -121,8 +117,8 @@ page-contact {
   border-bottom: 1px solid whitesmoke;
 }
 
-.favlist-item-toggle.list-md.item-block.item-inner {
-  border-bottom: transparent;
+.favlist-item-toggle .item-inner {
+  border-bottom: none !important;
 }
 
 #btnDelete {
