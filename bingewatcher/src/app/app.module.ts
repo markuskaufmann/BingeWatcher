@@ -16,6 +16,7 @@ import {SearchPage} from "../pages/search/search";
 import {FavoriteService} from "../services/favorite/favorite";
 import {DetailPage} from "../pages/detail/detail";
 import {EpisodeDetailPage} from "../pages/episode/episode_detail";
+import {Toast} from "@ionic-native/toast";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {EpisodeDetailPage} from "../pages/episode/episode_detail";
     StatusBar,
     SplashScreen,
     File,
+    Toast,
     FavoriteService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

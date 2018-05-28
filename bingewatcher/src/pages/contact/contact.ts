@@ -56,6 +56,10 @@ export class ContactPage {
     item.close();
   }
 
+  updatePush(fav: StoredFavorite) {
+    this.favService.setPush(fav, !fav.push);
+  }
+
   showDetails(fav: StoredFavorite) {
     let results = this.httpClient.get(ContactPage.API_DETAIL_URL + fav.serieId + ContactPage.API_DETAIL_QUERY);
     results.subscribe(data => {

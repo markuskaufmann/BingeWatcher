@@ -13,7 +13,6 @@ import {EpisodeDetailPage} from "../episode/episode_detail";
 export class HomePage {
 
   private static readonly API_URL = "https://api.themoviedb.org/3/tv/tv_placeholder/season/season_placeholder/episode/episode_placeholder?api_key=a3098e7a0c2ad40520eab2ff867b1f76&language=en-US";
-  private static readonly IMAGE_URL = "http://image.tmdb.org/t/p/w185/";
 
   @ViewChild(Slides) slides: Slides;
 

@@ -6,6 +6,7 @@ import {Serie} from "../../interfaces/Serie";
 import {DetailPage} from "../detail/detail";
 import {SerieDetail} from "../../interfaces/SerieDetail";
 import {FavoriteService} from "../../services/favorite/favorite";
+import {Toast} from "@ionic-native/toast";
 
 @Component({
   selector: 'page-search',
@@ -22,7 +23,8 @@ export class SearchPage {
   results: Array<Serie>;
   detail: SerieDetail;
 
-  constructor(public navCtrl: NavController, public httpClient: HttpClient, public alertCtrl: AlertController, public favService: FavoriteService) {
+  constructor(public navCtrl: NavController, public httpClient: HttpClient, public alertCtrl: AlertController,
+              public favService: FavoriteService, private toast: Toast) {
   }
 
   execSearch() {
@@ -68,6 +70,17 @@ export class SearchPage {
 
   addToFavorites(serie: Serie) {
     this.favService.addOrSetFavorite(serie, false);
+    this.toast.show('Zu Favoriten hinzugefügt.', '1500', 'bottom').subscribe(
+      toast => {
+        console.log('Success', toast);
+      },
+      error => {
+        console.log('Error', error);
+      },
+      () => {
+        console.log('Completed');
+      }
+    );
   }
 
   private presentAlert() {

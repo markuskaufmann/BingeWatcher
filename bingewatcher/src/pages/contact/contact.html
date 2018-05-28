@@ -33,7 +33,7 @@
         </div>
       </ion-item>
       <ion-item class="favlist-item-toggle">
-        <ion-toggle class="favToggle" [(ngModel)]="serie.push"></ion-toggle>
+        <ion-toggle class="favToggle" [checked]="serie.push" (ionChange)="updatePush(serie)"></ion-toggle>
       </ion-item>
       <ion-item-options side="left">
         <button id="btnDelete" ion-button (click)="removeFavorite(serie, item)">

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SerieDetail} from "../../interfaces/SerieDetail";
 import {FavoriteService} from "../../services/favorite/favorite";
+import {Toast} from "@ionic-native/toast";
 
 @Component({
   selector: 'page-detail',
@@ -13,7 +14,7 @@ export class DetailPage {
 
   serieDetail: SerieDetail;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public favService: FavoriteService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public favService: FavoriteService, private toast: Toast) {
     this.serieDetail = <SerieDetail> this.navParams.get("serie");
   }
 
@@ -61,5 +62,16 @@ export class DetailPage {
 
   addToFavorites() {
     this.favService.addOrSetFavorite(this.serieDetail, false);
+    this.toast.show('Zu Favoriten hinzugefügt.', 'short', 'bottom').subscribe(
+      toast => {
+        console.log('Success', toast);
+      },
+      error => {
+        console.log('Error', error);
+      },
+      () => {
+        console.log('Completed');
+      }
+    );
   }
 }
