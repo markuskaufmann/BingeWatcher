@@ -1,0 +1,111 @@
+page-episode_detail {
+
+}
+
+#detImg {
+  text-align: center;
+}
+
+#detImg .item-inner {
+  border: none;
+}
+
+.detSeasonImg {
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#btnDetFavorite {
+  color: white;
+  margin-right: 15px;
+}
+
+.detNav .toolbar-background {
+  background-color: map_get($colors, primary);
+}
+
+.detNavTitleEp {
+  text-align: center;
+  padding-right: 65px;
+}
+
+.detNavTitleEp .toolbar-title {
+  color: white;
+}
+
+.bwHeader .bar-button-default-md {
+  color: white;
+}
+
+.detOverview {
+  padding: 10px;
+}
+
+#detName {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#detFF {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#detSeasonOverview {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.detSeasonName {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  text-align: center;
+  font-style: italic;
+}
+
+#detFactContainer {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.detSeasonFactContainer {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.detFacts {
+  margin: 0 auto;
+  text-align: left;
+  color: #c2c2c2;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+.detFacts td {
+  padding: 10px;
+}
+
+.detLabel {
+  color: grey;
+  width: 150px;
+}
+
+.detValue {
+  width: auto;
+}
+
+#detEpTitle {
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+}

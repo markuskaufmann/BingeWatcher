@@ -15,6 +15,7 @@ import { File } from "@ionic-native/file";
 import {SearchPage} from "../pages/search/search";
 import {FavoriteService} from "../services/favorite/favorite";
 import {DetailPage} from "../pages/detail/detail";
+import {EpisodeDetailPage} from "../pages/episode/episode_detail";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {DetailPage} from "../pages/detail/detail";
     SearchPage,
     ContactPage,
     DetailPage,
+    EpisodeDetailPage,
     HomePage,
     TabsPage
   ],
@@ -38,6 +40,7 @@ import {DetailPage} from "../pages/detail/detail";
     SearchPage,
     ContactPage,
     DetailPage,
+    EpisodeDetailPage,
     HomePage,
     TabsPage
   ],

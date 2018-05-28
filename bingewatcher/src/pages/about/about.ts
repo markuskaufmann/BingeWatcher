@@ -111,7 +111,6 @@ export class AboutPage {
       let seriesAiringToday: SeriesAiringToday = <SeriesAiringToday>data;
       let series = seriesAiringToday.series;
       for (let serie of series) {
-        console.log(serie);
         let results = this.httpClient.get(AboutPage.SEARCH_URL + serie.name);
         results.subscribe(data => {
           let serieDetail = <SearchResults> data;
@@ -125,7 +124,6 @@ export class AboutPage {
             let episode: Episode = <Episode>value;
             episode.series_id = serie_id.id;
             episode.series_name = serie.name;
-            console.log(episode);
             if (episode.still_path && serie_id.poster_path) {
               episode.still_path = AboutPage.IMAGE_URL + serie_id.poster_path
             } else {

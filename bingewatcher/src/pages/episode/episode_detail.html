@@ -1,0 +1,34 @@
+<ion-header class="bwHeader">
+  <ion-navbar class="detNav">
+    <ion-title class="detNavTitleEp">Episode Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="content">
+  <ion-item id="detImg">
+    <img src="{{ episodeDetail.still_path }}" alt="no picture" />
+  </ion-item>
+  <ion-title id="detName">{{ episodeDetail.series_name }}</ion-title>
+  <ion-label id="detEpTitle">{{ episodeDetail.name }}</ion-label>
+  <div class="detOverview">{{ episodeDetail.overview }}</div>
+  <ion-title id="detFF">Facts & Figures</ion-title>
+  <div id="detFactContainer">
+    <table class="detFacts">
+      <tr>
+        <td class="detLabel">Staffel: </td>
+        <td class="detValue">{{ episodeDetail.season_number }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Episode: </td>
+        <td class="detValue">{{ episodeDetail.episode_number }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Ausstrahlung: </td>
+        <td class="detValue">{{ transformDate(episodeDetail.air_date) }}</td>
+      </tr>
+      <tr>
+        <td class="detLabel">Produktionscode: </td>
+        <td class="detValue">{{ episodeDetail.production_code }}</td>
+      </tr>
+    </table>
+  </div>
+</ion-content>
