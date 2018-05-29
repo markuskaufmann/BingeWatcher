@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {SerieDetail} from "../../interfaces/SerieDetail";
 import {DetailPage} from "../detail/detail";
 import {FavoriteService} from "../../services/favorite/favorite";
+import {Toast} from "@ionic-native/toast";
 
 @Component({
   selector: 'page-about',
@@ -31,7 +32,7 @@ export class AboutPage {
   currentIndex = 1;
   data: Episode[] = [];
 
-  constructor(public navCtrl: NavController, public httpClient: HttpClient, public favService: FavoriteService) {
+  constructor(public navCtrl: NavController, public httpClient: HttpClient, public favService: FavoriteService, private toast: Toast) {
     this.initialize();
   }
 
@@ -99,39 +100,53 @@ export class AboutPage {
       console.log(error);
     }, () => {
       this.favService.addOrSetFavorite(this.detail_favorites, false);
+      this.toast.show('Zu Favoriten hinzugefügt.', '1500', 'bottom').subscribe(
+        toast => {
+          console.log('Success', toast);
+        },
+        error => {
+          console.log('Error', error);
+        },
+        () => {
+          console.log('Completed');
+        }
+      );
     });
-
   }
 
   private getTodayEpisodes(date: Date) {
     this.data = [];
     let date_string = date.getDate().toString() + '_' + ("0" + (date.getMonth() + 1).toString()).slice(-2) + '_' + date.getFullYear().toString();
-    let seriesJsonToday = this.httpClient.get('http://127.0.0.1:8000/?date=' + date_string);
+    let seriesJsonToday = this.httpClient.get('http://10.155.98.108:8000/?date=' + date_string);
     seriesJsonToday.subscribe(data => {
       let seriesAiringToday: SeriesAiringToday = <SeriesAiringToday>data;
       let series = seriesAiringToday.series;
       for (let serie of series) {
-        let results = this.httpClient.get(AboutPage.SEARCH_URL + serie.name);
-        results.subscribe(data => {
-          let serieDetail = <SearchResults> data;
-          let serie_id = serieDetail.results[0];
-          let url = AboutPage.API_URL;
-          url = url.replace('tv_placeholder', serie_id.id.toString());
-          url = url.replace('season_placeholder', serie.season.toString());
-          url = url.replace('episode_placeholder', serie.episode.toString());
-          let episode_request = this.httpClient.get(url);
-          episode_request.subscribe(value => {
-            let episode: Episode = <Episode>value;
-            episode.series_id = serie_id.id;
-            episode.series_name = serie.name;
-            if (episode.still_path && serie_id.poster_path) {
-              episode.still_path = AboutPage.IMAGE_URL + serie_id.poster_path
-            } else {
-              episode.still_path = "./assets/imgs/no_poster.png"
-            }
-            this.data.push(episode)
-          })
-        });
+        setTimeout(() => {
+          let results = this.httpClient.get(AboutPage.SEARCH_URL + serie.name);
+          results.subscribe(data => {
+            let serieDetail = <SearchResults> data;
+            let serie_id = serieDetail.results[0];
+            let url = AboutPage.API_URL;
+            url = url.replace('tv_placeholder', serie_id.id.toString());
+            url = url.replace('season_placeholder', serie.season.toString());
+            url = url.replace('episode_placeholder', serie.episode.toString());
+            setTimeout(() => {
+              let episode_request = this.httpClient.get(url);
+              episode_request.subscribe(value => {
+                let episode: Episode = <Episode>value;
+                episode.series_id = serie_id.id;
+                episode.series_name = serie.name;
+                if (episode.still_path && serie_id.poster_path) {
+                  episode.still_path = AboutPage.IMAGE_URL + serie_id.poster_path
+                } else {
+                  episode.still_path = "./assets/imgs/no_poster.png"
+                }
+                this.data.push(episode);
+              });
+            }, 800);
+          });
+        }, 200);
       }
     });
   }

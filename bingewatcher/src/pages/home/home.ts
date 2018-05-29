@@ -57,7 +57,7 @@ export class HomePage {
   private getEpisodes(date: Date, index: number) {
     let favorites = this.favService.storedData.favs;
     let date_string = date.getDate().toString() + '_' + ("0" + (date.getMonth() + 1).toString()).slice(-2) + '_' + date.getFullYear().toString();
-    let seriesJsonToday = this.httpClient.get('http://127.0.0.1:8000/?date=' + date_string);
+    let seriesJsonToday = this.httpClient.get('http://10.155.98.108:8000/?date=' + date_string);
     seriesJsonToday.subscribe(data => {
       let seriesAiringToday: SeriesAiringToday = <SeriesAiringToday>data;
       let series = seriesAiringToday.series;

@@ -39,8 +39,6 @@ export class ContactPage {
       let storedData = this.favService.storedData;
       this.username = storedData.username;
       this.favorites = storedData.favs;
-      console.log(this.username);
-      console.log(this.favorites);
     });
   }
 
